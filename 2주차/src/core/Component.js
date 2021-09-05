@@ -14,7 +14,6 @@ export default class Component { //주의 render의 경우 상속받아 오버라이딩할 때 s
     observe(() => {
       this.render();
       this.setEvent();
-      this.mounted();
     })
   }; // 초기 state값 설정 [오버라이딩]
   initState() { return { } };
