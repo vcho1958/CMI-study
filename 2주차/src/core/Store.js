@@ -1,4 +1,4 @@
-import { observerble } from "./Observer";
+import { observable } from "./Observer.js";
 
 export class Store { //vuex 타입
   #state; //내부 메소드에서 mutation에 지정된 동작으로만 변화시킬 수 있도록 private로
@@ -6,7 +6,7 @@ export class Store { //vuex 타입
   #actions; //마찬가지로  dispatch를 통해서만 참조할 수 있도록 private
   state = { };
   constructor({ state, mutations, actions }) {
-    this.#state = observerble(state);
+    this.#state = observable(state);
     this.#mutations = mutations; //commit으로 동작시킬 action 집합
     this.#actions = actions; // dispatch를 통해 동작시킬 action 집합 (비동기적 API호출 할 때 사용)
     Object.keys(state).forEach(key => {
@@ -31,8 +31,8 @@ export class Store { //vuex 타입
 
 }
 
-export const creeateStore = (reducer) => {
-  const state = observerble(reducer());
+export const creeateStore = (reducer) => { //redux타입
+  const state = observable(reducer());
 
   const frozenState = { };
   Object.keys(state).forEach(key => {

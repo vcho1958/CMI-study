@@ -1,34 +1,51 @@
-import { Component } from "../core/Component.js";
-import { CalendarHeader } from "./CalendarHeader.js";
-import { CalendarBody } from "./CalendarBody.js";
+import Component from "../core/Component.js";
+import CalendarHeader from "./CalendarHeader.js";
+import CalendarBody from "./CalendarBody.js";
+import { store } from "../app.js"
 
-export class Calendar extends Component {
+
+
+export default class Calendar extends Component {
+
 
   template() {
     return `
       <header data-component="CalendarHeader">
       </header>
-      <main data-component="CalendarBody">
+      <main class="calendar-body" data-component="CalendarBody">
       </main>
     `
   }
 
-  initState() {
-    const state = {
-      today: new Date(),
-      selectedDate: new Date(),
-      select: true
-    };
-    state.month = state.today.getMonth() + 1;
-    state.year = state.today.getFullYear();
-    return state;
-  }
-
   mounted() {
-    const $CalendarHeader = document.querySelector(['data-component="CalendarHeader"']);
-    const $CalendarBody = document.querySelector(['data-component="CalendarBody"']);
-    new CalendarHeader($CalendarHeader, { state: this.state });
-    new CalendarBody($CalendarBody, { state: this.state });
+    const $CalendarHeader = document.querySelector('[data-component="CalendarHeader"]');
+    const $CalendarBody = document.querySelector('[data-component="CalendarBody"]');
+    new CalendarHeader($CalendarHeader);
+    new CalendarBody($CalendarBody);
+  }
+  setEvent() {
+    this.addEvent('click', '[data-component="CalendarCell"]', (event) => {
+      const selectedDate = store.state.selectedDate;
+      if (event.target.getAttribute('before')) {
+        store.commit('changeMonth', new Date(selectedDate.getFullYear(), selectedDate.getMonth() - 1, 1))
+      }
+      else if (event.target.getAttribute('after')) {
+        store.commit('changeMonth', new Date(selectedDate.getFullYear(), selectedDate.getMonth() + 1, 1))
+      }
+      store.commit('selectDate', event.target.getAttribute('date'));
+
+    });
+
+    this.addEvent('click', '[data-component="CalendarHeader"]', (event) => {
+      const selectedDate = store.state.selectedDate;
+      if (event.target.getAttribute('before')) {
+        store.commit('changeMonth', new Date(selectedDate.getFullYear(), selectedDate.getMonth() - 1, 1))
+      }
+      else if (event.target.getAttribute('after')) {
+        store.commit('changeMonth', new Date(selectedDate.getFullYear(), selectedDate.getMonth() + 1, 1))
+      }
+
+    })
   }
 
 }

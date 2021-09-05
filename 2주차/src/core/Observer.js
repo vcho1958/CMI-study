@@ -15,7 +15,7 @@ export const observe = fn => { //observerble을 통해 만들어진 객체를 참조하는 함�
   currentObserver = null;
 }
 
-export const observerble = obj => { //obj는 특정 상태가 들어있는 객체이다.
+export const observable = obj => { //obj는 특정 상태가 들어있는 객체이다.
   // Object.keys(obj).forEach(key => {
   //   let _value = obj[key];
   //   const observers = new Set();
@@ -46,8 +46,8 @@ export const observerble = obj => { //obj는 특정 상태가 들어있는 객체이다.
       return target[name];
     },
     set(target, name, value) {
-      if (target[name] = value) return true;
-      if (JSON.stringify(target[name]) == JSON.stringify(value)) return true;
+      if (!value.getMonth && target[name] == value) return true;
+      if (!value.getMonth && JSON.stringify(target[name]) == JSON.stringify(value)) return true;
       target[name] = value;
       observerMap[name].forEach(fn => fn());
       return true;

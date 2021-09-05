@@ -1,13 +1,22 @@
-import { Component } from "../core/Component.js";
+import Component from "../core/Component.js";
+import { store } from "../app.js"
+
+export default class CalendarHeader extends Component {
 
 
-export class CalendarHeader extends Component {
   template() {
     return `
-      <button className="prevMonth" onClick={prev}>Previous</button>
-      <h1>{months[selectedDate.getMonth()]}</h1>
-      <button className="nextMonth" onClick={next}>Next</button>
+      
+      <h1>${this.year}년 ${this.month}월</h1>
+      
+      <button className="nextMonth" after="true">></button>
+      <button className="prevMonth" before="true"><</button>
     `
   }
+  get month() {
+    return store.state.selectedDate.getMonth() + 1;
+  }
+
+  get year() { return store.state.selectedDate.getFullYear() }
 }
 

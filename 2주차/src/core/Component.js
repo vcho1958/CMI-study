@@ -1,6 +1,6 @@
-import { observe, observable } from "./Observer";
+import { observe, observable } from "./Observer.js";
 
-export class Component { //주의 render의 경우 상속받아 오버라이딩할 때 setState이외의 곳에서 사용되어서는 안된다.(목적 유지)
+export default class Component { //주의 render의 경우 상속받아 오버라이딩할 때 setState이외의 곳에서 사용되어서는 안된다.(목적 유지)
   state; // 
   props;
   $el;
@@ -16,13 +16,12 @@ export class Component { //주의 render의 경우 상속받아 오버라이딩할 때 setState�
       this.setEvent();
       this.mounted();
     })
-
-
   }; // 초기 state값 설정 [오버라이딩]
   initState() { return { } };
   template() { return '' }; // render시에 새로고침 될 html 구역이며 내부에서 map등으로 state에 있는 상태들을 활용하여 값을 동적으로 할당함 [오버라이딩]
   render() { // state변경 혹은 이벤트 발생시 setState함수 내부에서 실행되어 컴포넌트에 할당된 template을 기준으로 다시 렌더링 함
-    this.$target.innerHTML = this.template();
+
+    this.$el.innerHTML = this.template();
     this.mounted();
   }
   addEvent(eventType, selector, callback) {
