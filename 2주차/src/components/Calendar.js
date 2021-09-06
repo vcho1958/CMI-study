@@ -24,15 +24,19 @@ export default class Calendar extends Component {
     new CalendarBody($CalendarBody);
   }
   setEvent() {
-    this.addEvent('click', '[data-component="CalendarCell"]', (event) => {
-      const { selectedMonth, selectedYear } = store.state;
-      if (event.target.getAttribute('before')) {
-        store.commit('changeMonth', new Date(selectedYear, selectedMonth - 1, 1))
+    this.addEvent('click', '.calendar-cell', (event) => {
+      console.log(event.target.textContent)
+      if (event.target.textContent) {
+        const { selectedMonth, selectedYear } = store.state;
+        if (event.target.getAttribute('before')) {
+          store.commit('changeMonth', new Date(selectedYear, selectedMonth - 1, 1))
+        }
+        else if (event.target.getAttribute('after')) {
+          store.commit('changeMonth', new Date(selectedYear, selectedMonth + 1, 1))
+        }
+        store.commit('selectDate', event.target.textContent);
       }
-      else if (event.target.getAttribute('after')) {
-        store.commit('changeMonth', new Date(selectedYear, selectedMonth + 1, 1))
-      }
-      store.commit('selectDate', event.target.textContent);
+
 
     });
 

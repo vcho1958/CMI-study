@@ -71,7 +71,6 @@ export default class CalendarCell extends Component {
           $CalendarCell.setAttribute('after', true);
         }
       }
-      $CalendarCell.dataset.component = "CalendarCell"
 
     }
   }
