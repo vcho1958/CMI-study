@@ -10,7 +10,7 @@ const debounceFrame = (callback) => {
 }
 export const observe = fn => { //observerble을 통해 만들어진 객체를 참조하는 함수를 인자로 전달한다.
   //이유는 observerble이 사용되는 함수들을 observers에 등록하기 위해서
-  currentObserver = debounceFrame(fn);
+  currentObserver = fn;
   fn();
   currentObserver = null;
 }
@@ -46,9 +46,10 @@ export const observable = obj => { //obj는 특정 상태가 들어있는 객체이다.
       return target[name];
     },
     set(target, name, value) {
-      if (!value.getMonth && target[name] == value) return true;
-      if (!value.getMonth && JSON.stringify(target[name]) == JSON.stringify(value)) return true;
+      if (target[name] == value) return true;
+      if (JSON.stringify(target[name]) == JSON.stringify(value)) return true;
       target[name] = value;
+      console.log(observerMap[name]);
       observerMap[name].forEach(fn => fn());
       return true;
     }
