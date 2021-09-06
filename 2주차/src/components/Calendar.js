@@ -25,24 +25,24 @@ export default class Calendar extends Component {
   }
   setEvent() {
     this.addEvent('click', '[data-component="CalendarCell"]', (event) => {
-      const selectedDate = store.state.selectedDate;
+      const { selectedMonth, selectedYear } = store.state;
       if (event.target.getAttribute('before')) {
-        store.commit('changeMonth', new Date(selectedDate.getFullYear(), selectedDate.getMonth() - 1, 1))
+        store.commit('changeMonth', new Date(selectedYear, selectedMonth - 1, 1))
       }
       else if (event.target.getAttribute('after')) {
-        store.commit('changeMonth', new Date(selectedDate.getFullYear(), selectedDate.getMonth() + 1, 1))
+        store.commit('changeMonth', new Date(selectedYear, selectedMonth + 1, 1))
       }
-      store.commit('selectDate', event.target.getAttribute('date'));
+      store.commit('selectDate', event.target.textContent);
 
     });
 
     this.addEvent('click', '[data-component="CalendarHeader"]', (event) => {
-      const selectedDate = store.state.selectedDate;
+      const { selectedMonth, selectedYear } = store.state;
       if (event.target.getAttribute('before')) {
-        store.commit('changeMonth', new Date(selectedDate.getFullYear(), selectedDate.getMonth() - 1, 1))
+        store.commit('changeMonth', new Date(selectedYear, selectedMonth - 1, 1))
       }
       else if (event.target.getAttribute('after')) {
-        store.commit('changeMonth', new Date(selectedDate.getFullYear(), selectedDate.getMonth() + 1, 1))
+        store.commit('changeMonth', new Date(selectedYear, selectedMonth + 1, 1))
       }
 
     })

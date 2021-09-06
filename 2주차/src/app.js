@@ -7,18 +7,19 @@ export const store = new Store(
   {
     state: {
       today: new Date(),
-      selectedDate: new Date(),
+      selectedDate: new Date().getDate(),
+      selectedMonth: new Date().getMonth(),
+      selectedYear: new Date().getFullYear(),
       select: true
     },
     mutations: {
       selectDate(state, payload) {
-        state.selectedDate = new Date(state.selectedDate.getFullYear(), state.selectedDate.getMonth(), payload);
-        console.log('selectedDate', state.selectedDate);
+        state.selectedDate = payload;
         state.select = true;
       },
       changeMonth(state, payload) {
-        state.selectedDate = payload;
-        console.log('changeMonth', state.selectedDate);
+        state.selectedMonth = payload.getMonth();
+        state.selectedYear = payload.getFullYear();
         state.select = false;
       }
     }

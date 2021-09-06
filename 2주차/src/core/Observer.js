@@ -38,7 +38,7 @@ export const observable = obj => { //obj는 특정 상태가 들어있는 객체이다.
   //   });
   // })
   // return obj;
-  const observerMap = { };
+  const observerMap = {};
   return new Proxy(obj, {
     get(target, name) {//target이 obj의 사본 인 것 같다. name이 key라고 보면 될 듯.
       observerMap[name] = observerMap[name] || new Set();

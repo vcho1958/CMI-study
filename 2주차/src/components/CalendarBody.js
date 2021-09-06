@@ -5,30 +5,12 @@ import CalendarCell from "./CalendarCell.js";
 
 export default class CalendarBody extends Component {
 
-  get startDate() {
-    return new Date(store.state.selectedDate.getFullYear(), store.state.selectedDate.getMonth(), 1);
-  }
 
-  get prevMonthLast() {
-    return new Date(store.state.selectedDate.getFullYear(), store.state.selectedDate.getMonth(), 0).getDate();
-  }
-
-  get maxDate() {
-    const maxDates = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-    return maxDates[store.state.selectedDate.getMonth()];
-  }
-
-  get selectedDate() {
-    return store.state.selectedDate;
-  }
-  get today() { return store.state.today; }
-
-  get select() { return store.state.select; }
 
   template() {
     return `
       ${this.dayList.outerHTML}
-      ${this.cells.outerHTML}
+      <ol data-component="CalendarCell"></ol>
     `
   }
   get dayList() {
@@ -48,10 +30,8 @@ export default class CalendarBody extends Component {
   }
 
   mounted() {
-    const $CalendarCells = document.querySelectorAll('[data-component="CalendarCell"]');
-    $CalendarCells.forEach($CalendarCell => {
-      new CalendarCell($CalendarCell);
-    })
+    const $CalendarCell = document.querySelectorAll('[data-component="CalendarCell"]');
+    new CalendarCell($CalendarCell);
   }
   get cells() {
     let $CalendarCells = this.$el.querySelector('.calendar-cell-container');

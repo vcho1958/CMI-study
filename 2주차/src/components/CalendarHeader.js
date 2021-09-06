@@ -14,9 +14,9 @@ export default class CalendarHeader extends Component {
     `
   }
   get month() {
-    return store.state.selectedDate.getMonth() + 1;
+    return store.state.selectedMonth + 1;
   }
 
-  get year() { return store.state.selectedDate.getFullYear() }
+  get year() { return store.state.selectedYear }
 }
 
