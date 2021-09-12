@@ -10,10 +10,7 @@ export default class Calendar extends Component {
 
   template() {
     return `
-      <header data-component="CalendarHeader">
-      </header>
-      <main class="calendar-body" data-component="CalendarBody">
-      </main>
+
     `
   }
 
@@ -25,7 +22,6 @@ export default class Calendar extends Component {
   }
   setEvent() {
     this.addEvent('click', '.calendar-cell', (event) => {
-      console.log(event.target.textContent)
       if (event.target.textContent) {
         const { selectedMonth, selectedYear } = store.state;
         if (event.target.getAttribute('before')) {
