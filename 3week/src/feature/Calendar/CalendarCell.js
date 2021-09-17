@@ -1,41 +1,27 @@
 
-import { useSelector } from 'react-redux';
-import {
-  selectDate,
-  setDate,
-} from './calendarSlice';
-export default function CalendarCell(props) {
-  //props = {date, today=true|false, selected=true|false, change=prev|next|null}
-  return (
-    <>
-      <li today={props.today} selected={props.selected} onClick={() => {
-        if (change == 'prev')
-          return dispatch(setDate(props.date))
-      }}>{props.date}</li>
-    </>
-  )
-
-
-      get startDate() {
+import Component from "../core/Component.js";
+import { store } from "../app.js"
+export default class CalendarCell extends Component {
+  get startDate() {
     return new Date(store.state.selectedYear, store.state.selectedMonth, 1);
   }
 
-      get prevMonthLast() {
+  get prevMonthLast() {
     return new Date(store.state.selectedYear, store.state.selectedMonth, 0).getDate();
   }
 
-      get maxDate() {
+  get maxDate() {
     const maxDates = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
     return maxDates[store.state.selectedMonth];
   }
 
-      get selectedDate() {
+  get selectedDate() {
     return new Date(store.state.selectedYear, store.state.selectedMonth, store.state.selectedDate);
   }
-      get today() { return store.state.today; }
+  get today() { return store.state.today; }
 
-      get select() { return store.state.select; }
-      get date() {
+  get select() { return store.state.select; }
+  get date() {
     return this.$el.getAttribute("date");
   }
 
@@ -43,7 +29,7 @@ export default function CalendarCell(props) {
     return `${this.cells}`
   }
 
-      get cells() {
+  get cells() {
     console.log(this.$el)
     const { selectedDate, startDate, today, select, maxDate, prevMonthLast } = this;
     const startDay = startDate.getDay();

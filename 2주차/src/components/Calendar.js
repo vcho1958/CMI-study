@@ -10,7 +10,10 @@ export default class Calendar extends Component {
 
   template() {
     return `
-
+      <header data-component="CalendarHeader">
+      </header>
+      <main class="calendar-body" data-component="CalendarBody">
+      </main>
     `
   }
 
