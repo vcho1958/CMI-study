@@ -1,21 +1,18 @@
 import React from 'react';
-import Calendar from './feature/Calendar';
+import './style/reset.css';
 import './App.css';
+import { StateProvider } from './context';
+import Calendar from './feature/Calendar';
 
 
-export const DateContext = React.createContext({
-  today: new Date(),
-  selectedDate: new Date().getDate(),
-  selectedMonth: new Date().getMonth(),
-  selectedYear: new Date().getFullYear(),
-  select: true
-});
 
 function App() {
-  return (
-    <DateContext.Provider>
+  return (<>
+    <StateProvider>
       <Calendar />
-    </DateContext.Provider>
+    </StateProvider>
+  </>
+
   );
 }
 

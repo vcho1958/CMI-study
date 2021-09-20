@@ -1,0 +1,39 @@
+.calendarCell {
+  z-index: 0;
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  margin: 5px;
+  line-height: 50px;
+  outline: transparent solid 3px;
+  color: black;
+  transition: all;
+  transition-duration: 0.2s;
+}
+
+.calendarCell[select] {
+  z-index: 2;
+  outline: solid 3px #0078d7;
+}
+
+.calendarCell[today] {
+  background-color: #0078d7;
+  font-weight: bold;
+  color: white;
+  transition: all;
+}
+.calendarCell[select][today] {
+  background-color: #0078d7;
+  box-shadow: inset 0px 0px 0px 3px white;
+  font-weight: bold;
+  color: white;
+}
+
+.calendarCell[keyword] {
+  color: gray;
+}
+
+.calendarCell:not(.empty, [today], [selected]):hover {
+  z-index: 3;
+  outline: solid 2px white;
+}
