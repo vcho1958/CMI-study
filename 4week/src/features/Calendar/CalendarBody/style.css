@@ -1,0 +1,18 @@
+.CalendarBody {
+  width: 770px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border: 6px solid transparent;
+  padding-bottom: 3px;
+}
+
+.dayCell {
+  width: 100px;
+  margin: 5px;
+  height: 30px;
+  display: inline-block;
+  color: black;
+}

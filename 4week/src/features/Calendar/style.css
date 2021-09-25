@@ -1,0 +1,10 @@
+.calendar-body {
+  width: 770px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border: 6px solid transparent;
+  padding-bottom: 3px;
+}

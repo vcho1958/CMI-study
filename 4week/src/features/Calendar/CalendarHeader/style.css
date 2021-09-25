@@ -1,0 +1,9 @@
+h1 {
+  width: auto;
+  font-weight: 200;
+  margin: 10px 40px;
+  display: inline-block;
+  float: left;
+  font-size: 3em;
+  color: black;
+}
